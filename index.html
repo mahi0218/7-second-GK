@@ -3,179 +3,198 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>7 Second GK - TNPSC & TNUSRB Test</title>
+<title>7 Second GK - Online Tests</title>
 
 <style>
-* {
-    box-sizing: border-box;
+*{
+  box-sizing:border-box;
 }
 
-body {
-    margin: 0;
-    font-family: Arial, "Noto Sans Tamil", sans-serif;
-    background: linear-gradient(135deg, #06152f, #102f62);
-    min-height: 100vh;
-    color: #111;
+body{
+  margin:0;
+  font-family:Arial,"Noto Sans Tamil",sans-serif;
+  background:linear-gradient(135deg,#06152f,#0d2d5c);
+  color:#111;
+  min-height:100vh;
 }
 
-.container {
-    width: 100%;
-    max-width: 650px;
-    margin: auto;
-    padding: 15px;
+.container{
+  max-width:700px;
+  margin:auto;
+  padding:20px;
 }
 
-.header {
-    background: linear-gradient(135deg, #06152f, #123d7a);
-    color: white;
-    padding: 22px 15px;
-    border-radius: 18px;
-    text-align: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
-    border: 2px solid #f5c400;
+.header{
+  background:#0b2854;
+  border:3px solid #ffd700;
+  border-radius:25px;
+  padding:25px 15px;
+  text-align:center;
+  color:white;
+  margin-bottom:20px;
 }
 
-.header h1 {
-    margin: 0;
-    font-size: 27px;
+.header h1{
+  margin:0;
+  font-size:34px;
 }
 
-.header p {
-    margin: 8px 0 0;
-    color: #ffd800;
-    font-weight: bold;
+.header h2{
+  color:#ffd700;
+  font-size:21px;
+  margin:12px 0 0;
 }
 
-.info {
-    display: flex;
-    justify-content: space-between;
-    gap: 8px;
-    margin: 15px 0;
+.card{
+  background:white;
+  border-radius:22px;
+  padding:20px;
+  margin-bottom:18px;
+  box-shadow:0 5px 20px rgba(0,0,0,.25);
 }
 
-.info div {
-    background: white;
-    padding: 12px 8px;
-    border-radius: 12px;
-    text-align: center;
-    flex: 1;
-    font-weight: bold;
+.test-card{
+  cursor:pointer;
+  transition:.2s;
+  border:3px solid transparent;
 }
 
-.timer {
-    color: #d60000;
+.test-card:hover{
+  transform:scale(1.02);
+  border-color:#ffd700;
 }
 
-.question-box {
-    background: white;
-    padding: 20px;
-    border-radius: 18px;
-    box-shadow: 0 5px 18px rgba(0,0,0,0.25);
+.test-title{
+  font-size:25px;
+  font-weight:bold;
+  color:#124d91;
 }
 
-.question-number {
-    color: #0b4da2;
-    font-weight: bold;
-    margin-bottom: 12px;
+.test-info{
+  margin-top:10px;
+  font-size:17px;
+  line-height:1.7;
 }
 
-.question {
-    font-size: 20px;
-    font-weight: bold;
-    line-height: 1.6;
-    margin-bottom: 20px;
+.start-btn{
+  width:100%;
+  padding:15px;
+  border:0;
+  border-radius:14px;
+  background:#1261a0;
+  color:white;
+  font-size:20px;
+  font-weight:bold;
+  cursor:pointer;
+  margin-top:15px;
 }
 
-.option {
-    display: block;
-    width: 100%;
-    padding: 14px;
-    margin: 10px 0;
-    border: 2px solid #d6d6d6;
-    border-radius: 12px;
-    background: #f8f8f8;
-    font-size: 17px;
-    text-align: left;
-    cursor: pointer;
+.locked{
+  opacity:.6;
+  cursor:not-allowed;
 }
 
-.option:hover {
-    background: #eef5ff;
-    border-color: #1769aa;
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:15px;
 }
 
-.option.selected {
-    background: #dbeaff;
-    border-color: #0757b5;
+.progress{
+  color:#135a9c;
+  font-size:20px;
+  font-weight:bold;
 }
 
-.option.correct {
-    background: #d7f7df;
-    border-color: #159447;
+.timer{
+  background:#fff;
+  padding:10px 15px;
+  border-radius:12px;
+  color:#d00000;
+  font-size:20px;
+  font-weight:bold;
 }
 
-.option.wrong {
-    background: #ffdede;
-    border-color: #d60000;
+.question{
+  font-size:27px;
+  font-weight:bold;
+  line-height:1.6;
+  margin:20px 0;
 }
 
-.buttons {
-    display: flex;
-    gap: 10px;
-    margin-top: 20px;
+.option{
+  width:100%;
+  text-align:left;
+  padding:17px;
+  margin:9px 0;
+  border:3px solid #ddd;
+  border-radius:16px;
+  background:#fafafa;
+  font-size:20px;
+  cursor:pointer;
 }
 
-button.next {
-    flex: 1;
-    padding: 15px;
-    border: none;
-    border-radius: 12px;
-    background: #0757b5;
-    color: white;
-    font-size: 18px;
-    font-weight: bold;
-    cursor: pointer;
+.option:hover{
+  background:#eef6ff;
 }
 
-button.next:disabled {
-    background: #aaa;
-    cursor: not-allowed;
+.option.selected{
+  border-color:#1261a0;
+  background:#dceeff;
 }
 
-.result {
-    display: none;
-    background: white;
-    padding: 30px 20px;
-    border-radius: 18px;
-    text-align: center;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+.next-btn,.submit-btn{
+  width:100%;
+  padding:16px;
+  border:0;
+  border-radius:15px;
+  background:#1261a0;
+  color:white;
+  font-size:21px;
+  font-weight:bold;
+  margin-top:15px;
+  cursor:pointer;
 }
 
-.result h2 {
-    color: #0757b5;
+.back-btn{
+  width:100%;
+  padding:14px;
+  border:0;
+  border-radius:14px;
+  background:#555;
+  color:white;
+  font-size:18px;
+  margin-top:10px;
+  cursor:pointer;
 }
 
-.score {
-    font-size: 42px;
-    font-weight: bold;
-    color: #e0a800;
+.result{
+  text-align:center;
 }
 
-.restart {
-    padding: 14px 25px;
-    background: #0757b5;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    font-size: 17px;
-    cursor: pointer;
+.score{
+  font-size:55px;
+  font-weight:bold;
+  color:#1261a0;
+  margin:20px 0;
 }
 
-.footer {
-    text-align: center;
-    color: white;
-    margin-top: 18px;
-    font-size: 14px;
+.result-msg{
+  font-size:22px;
+  font-weight:bold;
+  margin-bottom:20px;
+}
+
+.hidden{
+  display:none;
+}
+
+.footer{
+  text-align:center;
+  color:white;
+  padding:20px;
+  font-size:15px;
 }
 </style>
 </head>
@@ -184,254 +203,424 @@ button.next:disabled {
 
 <div class="container">
 
-    <div class="header">
-        <h1>🔥 7 Second GK</h1>
-        <p>TNPSC & TNUSRB IMPORTANT TEST</p>
+<!-- HOME -->
+<div id="home">
+
+  <div class="header">
+    <h1>🔥 7 Second GK</h1>
+    <h2>TNPSC & TNUSRB ONLINE TEST</h2>
+  </div>
+
+  <div class="card">
+    <h2 style="text-align:center;color:#124d91;">
+      📚 தேர்வு பட்டியல்
+    </h2>
+  </div>
+
+  <div class="card test-card" onclick="startTest(0)">
+    <div class="test-title">📝 தேர்வு – 1</div>
+    <div class="test-info">
+      📋 5 Questions<br>
+      🎯 5 Marks<br>
+      ⏱️ 5 Minutes
     </div>
+    <button class="start-btn">START TEST ▶️</button>
+  </div>
 
-    <div class="info">
-        <div>
-            📝<br>
-            5 Questions
-        </div>
-
-        <div>
-            🎯<br>
-            5 Marks
-        </div>
-
-        <div class="timer">
-            ⏱️<br>
-            <span id="timer">05:00</span>
-        </div>
+  <div class="card test-card" onclick="startTest(1)">
+    <div class="test-title">📝 தேர்வு – 2</div>
+    <div class="test-info">
+      📋 5 Questions<br>
+      🎯 5 Marks<br>
+      ⏱️ 5 Minutes
     </div>
+    <button class="start-btn">START TEST ▶️</button>
+  </div>
 
-    <div id="quiz" class="question-box">
-
-        <div class="question-number" id="questionNumber">
-            Question 1 / 5
-        </div>
-
-        <div class="question" id="question">
-        </div>
-
-        <div id="options">
-        </div>
-
-        <div class="buttons">
-            <button class="next" id="nextButton" disabled onclick="nextQuestion()">
-                NEXT →
-            </button>
-        </div>
-
+  <div class="card test-card locked">
+    <div class="test-title">🔒 தேர்வு – 3</div>
+    <div class="test-info">
+      📋 5 Questions<br>
+      🎯 5 Marks<br>
+      ⏱️ 5 Minutes<br>
+      <b>விரைவில்...</b>
     </div>
-
-    <div id="result" class="result">
-
-        <h2>🎉 TEST COMPLETED!</h2>
-
-        <p>உங்கள் Score</p>
-
-        <div class="score">
-            <span id="score">0</span> / 5
-        </div>
-
-        <p id="resultText"></p>
-
-        <button class="restart" onclick="restartTest()">
-            🔄 RETRY TEST
-        </button>
-
-    </div>
-
-    <div class="footer">
-        7 Second GK | Learn Today... Lead Tomorrow...
-    </div>
+    <button class="start-btn locked">COMING SOON</button>
+  </div>
 
 </div>
 
+
+<!-- QUIZ -->
+<div id="quiz" class="hidden">
+
+  <div class="header">
+    <h1>🔥 7 Second GK</h1>
+    <h2 id="testName">தேர்வு – 1</h2>
+  </div>
+
+  <div class="topbar">
+    <div class="progress" id="progress">Question 1 / 5</div>
+    <div class="timer" id="timer">05:00</div>
+  </div>
+
+  <div class="card">
+
+    <div id="question" class="question"></div>
+
+    <div id="options"></div>
+
+    <button id="nextBtn" class="next-btn" onclick="nextQuestion()">
+      NEXT ▶️
+    </button>
+
+  </div>
+
+</div>
+
+
+<!-- RESULT -->
+<div id="result" class="hidden">
+
+  <div class="header">
+    <h1>🏆 TEST COMPLETED!</h1>
+  </div>
+
+  <div class="card result">
+
+    <h2 id="resultTestName"></h2>
+
+    <div class="score" id="score"></div>
+
+    <div class="result-msg" id="resultMsg"></div>
+
+    <button class="start-btn" onclick="goHome()">
+      📝 BACK TO TEST LIST
+    </button>
+
+  </div>
+
+</div>
+
+
+<div class="footer">
+  7 Second GK | Learn Today... Lead Tomorrow... 🚀
+</div>
+
+</div>
+
+
 <script>
 
-const questions = [
+const tests = [
+
+/* =========================
+   TEST 1
+========================= */
 
 {
-    question: "சிந்து சமவெளி மக்கள் அறிந்திடாத உலோகம் எது?",
-    options: ["இரும்பு", "செம்பு", "தங்கம்", "வெள்ளி"],
-    answer: 0
+  name:"தேர்வு – 1",
+  questions:[
+
+    {
+      question:"சிந்து சமவெளி மக்கள் அறிந்திடாத உலோகம் எது?",
+      options:["இரும்பு","செம்பு","தங்கம்","வெள்ளி"],
+      answer:0
+    },
+
+    {
+      question:"அடிமையின் அடிமை என அழைக்கப்பட்டவர் யார்?",
+      options:["பால்பன்","இராஜியா","அமீர்குஸ்ரு","இல்துத்தமிஷ்"],
+      answer:3
+    },
+
+    {
+      question:"தலைக்கோட்டைப் போர் எந்த ஆண்டு நடைபெற்றது?",
+      options:["1560","1562","1565","1571"],
+      answer:2
+    },
+
+    {
+      question:"இரண்டாவது புத்த சமய மாநாடு நடைபெற்ற இடம் எது?",
+      options:["ராஜகிரகம்","வைசாலி","காஷ்மீர்","பாலிபுத்திரம்"],
+      answer:1
+    },
+
+    {
+      question:"டச்சுக்காரர்கள் இந்தியாவிற்கு வருகை புரிந்த ஆண்டு என்ன?",
+      options:["1600","1602","1606","1608"],
+      answer:1
+    }
+
+  ]
 },
 
-{
-    question: "அடிமையின் அடிமை என அழைக்கப்பட்டவர் யார்?",
-    options: ["பால்பன்", "இராஜியா", "அமீர்குஸ்ரு", "இல்துத்தமிஷ்"],
-    answer: 3
-},
+
+/* =========================
+   TEST 2
+========================= */
 
 {
-    question: "தலைக்கோட்டைப் போர் எந்த ஆண்டு நடைபெற்றது?",
-    options: ["1560", "1562", "1565", "1571"],
-    answer: 2
-},
+  name:"தேர்வு – 2",
+  questions:[
 
-{
-    question: "இரண்டாவது புத்த சமய மாநாடு நடைபெற்ற இடம் எது?",
-    options: ["ராஜகிரகம்", "வைசாலி", "காஷ்மீர்", "பாலிபுத்திரம்"],
-    answer: 1
-},
+    {
+      question:"இந்திய அரசியலமைப்பு நிர்ணய சபையின் தலைவர் யார்?",
+      options:[
+        "டாக்டர். ராஜேந்திரபிரசாத்",
+        "டாக்டர். B.R. அம்பேத்கார்",
+        "டாக்டர். சச்சிதானந்த சின்ஹா",
+        "ஆடம் ஸ்மித்"
+      ],
+      answer:0
+    },
 
-{
-    question: "டச்சுக்காரர்கள் இந்தியாவிற்கு வருகை புரிந்த ஆண்டு என்ன?",
-    options: ["1600", "1602", "1606", "1608"],
-    answer: 1
+    {
+      question:"தேசிய கீதம் எப்போது அரசியலமைப்பு குழுவால் ஏற்றுக்கொள்ளப்பட்டது?",
+      options:[
+        "ஜூலை 22, 1947",
+        "ஜூன் 22, 1948",
+        "ஜனவரி 24, 1950",
+        "ஜனவரி 24, 1952"
+      ],
+      answer:2
+    },
+
+    {
+      question:"முகவுரை எந்தச் சட்டத்திருத்தத்தின் படி திருத்தப்பட்டது?",
+      options:[
+        "41வது சட்டத்திருத்தம்",
+        "42வது சட்டத்திருத்தம்",
+        "44வது சட்டத்திருத்தம்",
+        "52வது சட்டத்திருத்தம்"
+      ],
+      answer:1
+    },
+
+    {
+      question:"இந்தியாவில் மொழிவாரியாக பிரிக்கப்பட்ட முதல் மாநிலம் எது?",
+      options:[
+        "மத்திய பிரதேசம்",
+        "உத்தரகாண்ட்",
+        "உத்திரப்பிரதேசம்",
+        "ஆந்திரப்பிரதேசம்"
+      ],
+      answer:3
+    },
+
+    {
+      question:"சம ஊதிய சட்டம் (ஆண்-பெண்) எந்த ஆண்டு இயற்றப்பட்டது?",
+      options:[
+        "1971",
+        "1972",
+        "1976",
+        "1979"
+      ],
+      answer:2
+    }
+
+  ]
 }
 
 ];
 
+
+let currentTest = 0;
 let currentQuestion = 0;
 let score = 0;
-let selectedAnswer = null;
+let selectedAnswer = -1;
 let timeLeft = 300;
 let timerInterval;
 
-function loadQuestion() {
 
-    selectedAnswer = null;
+function startTest(testIndex){
 
-    document.getElementById("questionNumber").innerText =
-        "Question " + (currentQuestion + 1) + " / " + questions.length;
+  currentTest = testIndex;
+  currentQuestion = 0;
+  score = 0;
+  selectedAnswer = -1;
+  timeLeft = 300;
 
-    document.getElementById("question").innerText =
-        questions[currentQuestion].question;
+  document.getElementById("home").classList.add("hidden");
+  document.getElementById("result").classList.add("hidden");
+  document.getElementById("quiz").classList.remove("hidden");
 
-    const optionsDiv = document.getElementById("options");
-    optionsDiv.innerHTML = "";
+  document.getElementById("testName").innerText =
+    tests[currentTest].name;
 
-    questions[currentQuestion].options.forEach((option, index) => {
+  loadQuestion();
 
-        const button = document.createElement("button");
+  clearInterval(timerInterval);
 
-        button.className = "option";
-        button.innerText =
-            String.fromCharCode(65 + index) + ") " + option;
+  timerInterval = setInterval(function(){
 
-        button.onclick = function() {
-            selectAnswer(index, button);
-        };
+    timeLeft--;
 
-        optionsDiv.appendChild(button);
+    updateTimer();
 
-    });
-
-    document.getElementById("nextButton").disabled = true;
-
-    if (currentQuestion === questions.length - 1) {
-        document.getElementById("nextButton").innerText = "FINISH TEST ✓";
-    } else {
-        document.getElementById("nextButton").innerText = "NEXT →";
+    if(timeLeft <= 0){
+      clearInterval(timerInterval);
+      finishTest();
     }
+
+  },1000);
+
 }
 
-function selectAnswer(index, button) {
 
-    selectedAnswer = index;
+function updateTimer(){
 
-    const buttons = document.querySelectorAll(".option");
+  let minutes = Math.floor(timeLeft / 60);
+  let seconds = timeLeft % 60;
 
-    buttons.forEach(btn => {
-        btn.classList.remove("selected");
-    });
+  document.getElementById("timer").innerText =
+    String(minutes).padStart(2,"0") + ":" +
+    String(seconds).padStart(2,"0");
 
-    button.classList.add("selected");
-
-    document.getElementById("nextButton").disabled = false;
 }
 
-function nextQuestion() {
 
-    if (selectedAnswer === null) return;
+function loadQuestion(){
 
-    if (selectedAnswer === questions[currentQuestion].answer) {
-        score++;
-    }
+  const q = tests[currentTest].questions[currentQuestion];
+
+  document.getElementById("progress").innerText =
+    "Question " + (currentQuestion + 1) + " / 5";
+
+  document.getElementById("question").innerText =
+    q.question;
+
+  const optionsDiv =
+    document.getElementById("options");
+
+  optionsDiv.innerHTML = "";
+
+  selectedAnswer = -1;
+
+  q.options.forEach(function(option,index){
+
+    const button = document.createElement("button");
+
+    button.className = "option";
+
+    button.innerText =
+      String.fromCharCode(65 + index) + ") " + option;
+
+    button.onclick = function(){
+
+      selectedAnswer = index;
+
+      document.querySelectorAll(".option")
+        .forEach(function(btn){
+          btn.classList.remove("selected");
+        });
+
+      button.classList.add("selected");
+
+    };
+
+    optionsDiv.appendChild(button);
+
+  });
+
+
+  if(currentQuestion === 4){
+
+    document.getElementById("nextBtn").innerText =
+      "SUBMIT TEST ✓";
+
+  }else{
+
+    document.getElementById("nextBtn").innerText =
+      "NEXT ▶️";
+
+  }
+
+}
+
+
+function nextQuestion(){
+
+  if(selectedAnswer === -1){
+
+    alert("முதலில் ஒரு பதிலை தேர்வு செய்யுங்கள்!");
+
+    return;
+
+  }
+
+  const correctAnswer =
+    tests[currentTest].questions[currentQuestion].answer;
+
+  if(selectedAnswer === correctAnswer){
+
+    score++;
+
+  }
+
+  if(currentQuestion < 4){
 
     currentQuestion++;
 
-    if (currentQuestion < questions.length) {
-
-        loadQuestion();
-
-    } else {
-
-        finishTest();
-
-    }
-}
-
-function finishTest() {
-
-    clearInterval(timerInterval);
-
-    document.getElementById("quiz").style.display = "none";
-    document.getElementById("result").style.display = "block";
-
-    document.getElementById("score").innerText = score;
-
-    let message = "";
-
-    if (score === 5) {
-        message = "🏆 Excellent! 5/5 — Super!";
-    } else if (score >= 3) {
-        message = "👏 நல்ல முயற்சி! இன்னும் கொஞ்சம் practice செய்யுங்கள்.";
-    } else {
-        message = "📚 மீண்டும் படித்து TEST-ஐ முயற்சி செய்யுங்கள்!";
-    }
-
-    document.getElementById("resultText").innerText = message;
-}
-
-function startTimer() {
-
-    timerInterval = setInterval(function() {
-
-        timeLeft--;
-
-        let minutes = Math.floor(timeLeft / 60);
-        let seconds = timeLeft % 60;
-
-        document.getElementById("timer").innerText =
-            String(minutes).padStart(2, "0") + ":" +
-            String(seconds).padStart(2, "0");
-
-        if (timeLeft <= 0) {
-
-            clearInterval(timerInterval);
-
-            finishTest();
-
-        }
-
-    }, 1000);
-}
-
-function restartTest() {
-
-    currentQuestion = 0;
-    score = 0;
-    selectedAnswer = null;
-    timeLeft = 300;
-
-    document.getElementById("timer").innerText = "05:00";
-
-    document.getElementById("quiz").style.display = "block";
-    document.getElementById("result").style.display = "none";
-
     loadQuestion();
 
-    clearInterval(timerInterval);
-    startTimer();
+  }else{
+
+    finishTest();
+
+  }
+
 }
 
-loadQuestion();
-startTimer();
+
+function finishTest(){
+
+  clearInterval(timerInterval);
+
+  document.getElementById("quiz").classList.add("hidden");
+
+  document.getElementById("result").classList.remove("hidden");
+
+  document.getElementById("resultTestName").innerText =
+    tests[currentTest].name;
+
+  document.getElementById("score").innerText =
+    score + " / 5";
+
+  let message = "";
+
+  if(score === 5){
+
+    message = "🎉 Excellent! மிக அருமை!";
+
+  }else if(score >= 3){
+
+    message = "👏 நல்ல முயற்சி! இன்னும் practice செய்யுங்கள்.";
+
+  }else{
+
+    message = "💪 மீண்டும் முயற்சி செய்யுங்கள்!";
+
+  }
+
+  document.getElementById("resultMsg").innerText =
+    message;
+
+}
+
+
+function goHome(){
+
+  clearInterval(timerInterval);
+
+  document.getElementById("result").classList.add("hidden");
+
+  document.getElementById("quiz").classList.add("hidden");
+
+  document.getElementById("home").classList.remove("hidden");
+
+}
+
 
 </script>
 
