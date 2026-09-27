@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>7 Second GK - TNPSC & TNUSRB Test</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, "Noto Sans Tamil", sans-serif;
+    background: linear-gradient(135deg, #06152f, #102f62);
+    min-height: 100vh;
+    color: #111;
+}
+
+.container {
+    width: 100%;
+    max-width: 650px;
+    margin: auto;
+    padding: 15px;
+}
+
+.header {
+    background: linear-gradient(135deg, #06152f, #123d7a);
+    color: white;
+    padding: 22px 15px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+    border: 2px solid #f5c400;
+}
+
+.header h1 {
+    margin: 0;
+    font-size: 27px;
+}
+
+.header p {
+    margin: 8px 0 0;
+    color: #ffd800;
+    font-weight: bold;
+}
+
+.info {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+    margin: 15px 0;
+}
+
+.info div {
+    background: white;
+    padding: 12px 8px;
+    border-radius: 12px;
+    text-align: center;
+    flex: 1;
+    font-weight: bold;
+}
+
+.timer {
+    color: #d60000;
+}
+
+.question-box {
+    background: white;
+    padding: 20px;
+    border-radius: 18px;
+    box-shadow: 0 5px 18px rgba(0,0,0,0.25);
+}
+
+.question-number {
+    color: #0b4da2;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+.question {
+    font-size: 20px;
+    font-weight: bold;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.option {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border: 2px solid #d6d6d6;
+    border-radius: 12px;
+    background: #f8f8f8;
+    font-size: 17px;
+    text-align: left;
+    cursor: pointer;
+}
+
+.option:hover {
+    background: #eef5ff;
+    border-color: #1769aa;
+}
+
+.option.selected {
+    background: #dbeaff;
+    border-color: #0757b5;
+}
+
+.option.correct {
+    background: #d7f7df;
+    border-color: #159447;
+}
+
+.option.wrong {
+    background: #ffdede;
+    border-color: #d60000;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button.next {
+    flex: 1;
+    padding: 15px;
+    border: none;
+    border-radius: 12px;
+    background: #0757b5;
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+button.next:disabled {
+    background: #aaa;
+    cursor: not-allowed;
+}
+
+.result {
+    display: none;
+    background: white;
+    padding: 30px 20px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.result h2 {
+    color: #0757b5;
+}
+
+.score {
+    font-size: 42px;
+    font-weight: bold;
+    color: #e0a800;
+}
+
+.restart {
+    padding: 14px 25px;
+    background: #0757b5;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.footer {
+    text-align: center;
+    color: white;
+    margin-top: 18px;
+    font-size: 14px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="header">
+        <h1>🔥 7 Second GK</h1>
+        <p>TNPSC & TNUSRB IMPORTANT TEST</p>
+    </div>
+
+    <div class="info">
+        <div>
+            📝<br>
+            5 Questions
+        </div>
+
+        <div>
+            🎯<br>
+            5 Marks
+        </div>
+
+        <div class="timer">
+            ⏱️<br>
+            <span id="timer">05:00</span>
+        </div>
+    </div>
+
+    <div id="quiz" class="question-box">
+
+        <div class="question-number" id="questionNumber">
+            Question 1 / 5
+        </div>
+
+        <div class="question" id="question">
+        </div>
+
+        <div id="options">
+        </div>
+
+        <div class="buttons">
+            <button class="next" id="nextButton" disabled onclick="nextQuestion()">
+                NEXT →
+            </button>
+        </div>
+
+    </div>
+
+    <div id="result" class="result">
+
+        <h2>🎉 TEST COMPLETED!</h2>
+
+        <p>உங்கள் Score</p>
+
+        <div class="score">
+            <span id="score">0</span> / 5
+        </div>
+
+        <p id="resultText"></p>
+
+        <button class="restart" onclick="restartTest()">
+            🔄 RETRY TEST
+        </button>
+
+    </div>
+
+    <div class="footer">
+        7 Second GK | Learn Today... Lead Tomorrow...
+    </div>
+
+</div>
+
+<script>
+
+const questions = [
+
+{
+    question: "சிந்து சமவெளி மக்கள் அறிந்திடாத உலோகம் எது?",
+    options: ["இரும்பு", "செம்பு", "தங்கம்", "வெள்ளி"],
+    answer: 0
+},
+
+{
+    question: "அடிமையின் அடிமை என அழைக்கப்பட்டவர் யார்?",
+    options: ["பால்பன்", "இராஜியா", "அமீர்குஸ்ரு", "இல்துத்தமிஷ்"],
+    answer: 3
+},
+
+{
+    question: "தலைக்கோட்டைப் போர் எந்த ஆண்டு நடைபெற்றது?",
+    options: ["1560", "1562", "1565", "1571"],
+    answer: 2
+},
+
+{
+    question: "இரண்டாவது புத்த சமய மாநாடு நடைபெற்ற இடம் எது?",
+    options: ["ராஜகிரகம்", "வைசாலி", "காஷ்மீர்", "பாலிபுத்திரம்"],
+    answer: 1
+},
+
+{
+    question: "டச்சுக்காரர்கள் இந்தியாவிற்கு வருகை புரிந்த ஆண்டு என்ன?",
+    options: ["1600", "1602", "1606", "1608"],
+    answer: 1
+}
+
+];
+
+let currentQuestion = 0;
+let score = 0;
+let selectedAnswer = null;
+let timeLeft = 300;
+let timerInterval;
+
+function loadQuestion() {
+
+    selectedAnswer = null;
+
+    document.getElementById("questionNumber").innerText =
+        "Question " + (currentQuestion + 1) + " / " + questions.length;
+
+    document.getElementById("question").innerText =
+        questions[currentQuestion].question;
+
+    const optionsDiv = document.getElementById("options");
+    optionsDiv.innerHTML = "";
+
+    questions[currentQuestion].options.forEach((option, index) => {
+
+        const button = document.createElement("button");
+
+        button.className = "option";
+        button.innerText =
+            String.fromCharCode(65 + index) + ") " + option;
+
+        button.onclick = function() {
+            selectAnswer(index, button);
+        };
+
+        optionsDiv.appendChild(button);
+
+    });
+
+    document.getElementById("nextButton").disabled = true;
+
+    if (currentQuestion === questions.length - 1) {
+        document.getElementById("nextButton").innerText = "FINISH TEST ✓";
+    } else {
+        document.getElementById("nextButton").innerText = "NEXT →";
+    }
+}
+
+function selectAnswer(index, button) {
+
+    selectedAnswer = index;
+
+    const buttons = document.querySelectorAll(".option");
+
+    buttons.forEach(btn => {
+        btn.classList.remove("selected");
+    });
+
+    button.classList.add("selected");
+
+    document.getElementById("nextButton").disabled = false;
+}
+
+function nextQuestion() {
+
+    if (selectedAnswer === null) return;
+
+    if (selectedAnswer === questions[currentQuestion].answer) {
+        score++;
+    }
+
+    currentQuestion++;
+
+    if (currentQuestion < questions.length) {
+
+        loadQuestion();
+
+    } else {
+
+        finishTest();
+
+    }
+}
+
+function finishTest() {
+
+    clearInterval(timerInterval);
+
+    document.getElementById("quiz").style.display = "none";
+    document.getElementById("result").style.display = "block";
+
+    document.getElementById("score").innerText = score;
+
+    let message = "";
+
+    if (score === 5) {
+        message = "🏆 Excellent! 5/5 — Super!";
+    } else if (score >= 3) {
+        message = "👏 நல்ல முயற்சி! இன்னும் கொஞ்சம் practice செய்யுங்கள்.";
+    } else {
+        message = "📚 மீண்டும் படித்து TEST-ஐ முயற்சி செய்யுங்கள்!";
+    }
+
+    document.getElementById("resultText").innerText = message;
+}
+
+function startTimer() {
+
+    timerInterval = setInterval(function() {
+
+        timeLeft--;
+
+        let minutes = Math.floor(timeLeft / 60);
+        let seconds = timeLeft % 60;
+
+        document.getElementById("timer").innerText =
+            String(minutes).padStart(2, "0") + ":" +
+            String(seconds).padStart(2, "0");
+
+        if (timeLeft <= 0) {
+
+            clearInterval(timerInterval);
+
+            finishTest();
+
+        }
+
+    }, 1000);
+}
+
+function restartTest() {
+
+    currentQuestion = 0;
+    score = 0;
+    selectedAnswer = null;
+    timeLeft = 300;
+
+    document.getElementById("timer").innerText = "05:00";
+
+    document.getElementById("quiz").style.display = "block";
+    document.getElementById("result").style.display = "none";
+
+    loadQuestion();
+
+    clearInterval(timerInterval);
+    startTimer();
+}
+
+loadQuestion();
+startTimer();
+
+</script>
+
+</body>
+</html>
